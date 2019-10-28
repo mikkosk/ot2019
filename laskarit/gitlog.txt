@@ -1,0 +1,114 @@
+$ git log --stat|cat
+commit 7b0407e22599671ed7844cba50dcbb6b261884a5
+Author: Mikko Kivistö <mikkosakarikivisto@gmail.com>
+Date:   Mon Oct 28 15:57:07 2019 +0200
+
+    poistettu file1, mv file2 -> file22
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 4b06eb0c852ad8e67b3731aa8e8927919dcba0df
+Author: Mikko Kivistö <mikkosakarikivisto@gmail.com>
+Date:   Mon Oct 28 15:46:24 2019 +0200
+
+    lisätty file1, file2, file3
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit d1ff774e23ee14fbbb6fa78f19c1fcd6bc9000c2
+Author: Mikko Kivistö <mikkosakarikivisto@gmail.com>
+Date:   Mon Oct 28 15:40:44 2019 +0200
+
+    git add p
+
+ eka.txt    | 3 ++-
+ kolmas.txt | 2 +-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+commit 7fff0aaf574aafa71eb187201af6bb872e17d790
+Author: Mikko Kivistö <mikkosakarikivisto@gmail.com>
+Date:   Mon Oct 28 15:38:04 2019 +0200
+
+    tiedosto uudestaan nimetty ekaksi
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 85596aa43506e91069dd71cacfd3b7b8df8bf2bd
+Author: Mikko Kivistö <mikkosakarikivisto@gmail.com>
+Date:   Mon Oct 28 15:37:19 2019 +0200
+
+    toinen poistettu
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit af3e22b2811902a186e956410020673e515a7285
+Author: Mikko Kivistö <mikkosakarikivisto@gmail.com>
+Date:   Mon Oct 28 15:36:17 2019 +0200
+
+    tiedostosta poistettu ja lisätty hieman tekstiä
+
+ tiedosto.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit d9227718ddf9b39e611b43c087d59c20689ea97d
+Author: Mikko Kivistö <mikkosakarikivisto@gmail.com>
+Date:   Mon Oct 28 15:34:48 2019 +0200
+
+    tiedostoon lisätty paljon tekstiä
+
+ tiedosto.txt | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+commit 3b692c1461d2391ba3c31bd8a7fbbc42b7472e94
+Author: Mikko Kivistö <mikkosakarikivisto@gmail.com>
+Date:   Mon Oct 28 10:27:45 2019 +0200
+
+    stuff hakemisto lisätty ja sen sisään jokin
+
+ stuff/jokin | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 8d26fc14468490eb39ad71d8347f1103dda68491
+Author: Mikko Kivistö <mikkosakarikivisto@gmail.com>
+Date:   Mon Oct 28 10:26:42 2019 +0200
+
+    muutettu toinen ja kolmas
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 4a712a044774926e08137294de1a49491bad94b5
+Author: Mikko Kivistö <mikkosakarikivisto@gmail.com>
+Date:   Mon Oct 28 10:25:30 2019 +0200
+
+    lisätty kolmas
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit c9a7c79e42ef486c7b02c03fcc6db8e709eca17f
+Author: Mikko Kivistö <mikkosakarikivisto@gmail.com>
+Date:   Mon Oct 28 10:24:19 2019 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit f9d0b4508967085394af1216f93c7070b9a5e858
+Author: Mikko Kivistö <mikkosakarikivisto@gmail.com>
+Date:   Mon Oct 28 10:22:09 2019 +0200
+
+    tiedosto luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
