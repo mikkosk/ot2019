@@ -8,4 +8,6 @@
 
 [komentorivi.txt](https://github.com/mikkosk/ot2019/blob/master/laskarit/komentorivi.txt)
 
+Tekijä:
+
 *Mikko Kivistö*
