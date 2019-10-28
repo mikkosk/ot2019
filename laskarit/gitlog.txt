@@ -1,3 +1,5 @@
+palautus:
+
 $ git log --stat|cat
 commit 7b0407e22599671ed7844cba50dcbb6b261884a5
 Author: Mikko Kivistö <mikkosakarikivisto@gmail.com>
