@@ -10,4 +10,4 @@
 
 Tekijä:
 
-*Mikko Kivistö*
+*Mikko Kivistö* 2019
