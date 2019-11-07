@@ -13,6 +13,8 @@ pelaajat ovat **normaali käyttäjiä**
 
 Sovellus koostuu kahdesta näkymästä. 
 
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/master/kuvat/vaatimusmaarittely.png">
+
 Ensimmäisessä näkymässä pelaajat voivat valita nimensä ja puolet. Toisessa 
 näkymässä toimii itse shakkipeli. Tähän siirrytään, kun pelaajat ovat
 valinneet puolet ja siitä siirrytään takaisin ensimmäiseen näkymään,
