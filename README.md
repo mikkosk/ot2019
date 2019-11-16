@@ -1,20 +1,38 @@
-### Ohjelmistotekniikka
+## Shakki - OT2019
 
-[kurssin työaikakirjanpito](https://github.com/mikkosk/ot2019/blob/master/dokumentaatio/tyoaikakirjanpito.md)
+Sovelluksessa kaksi pelaajaa pystyvät pelaamaan shakkia vastakkain.
+Tällä hetkellä peli ei kuitenkaan tunne vielä sääntöjä, vaan nappuloita voi
+siirtää aivan miten haluaa.
 
-**Ohjelmistotekniikan** kurssin palautettavat tehtävät.
+### Dokumentaatio
 
-## Viikko1
+[Vaatimusmäärittely](https://github.com/mikkosk/ot2019/tree/master/dokumentaatio/vaatimusmaarittely.md)
 
-[gitlog.txt](https://github.com/mikkosk/ot2019/blob/master/laskarit/gitlog.txt)
+[Työaikakirjanpito](https://github.com/mikkosk/ot2019/tree/master/dokumentaatio/tyoaikakirjanpito.md)
 
-[komentorivi.txt](https://github.com/mikkosk/ot2019/blob/master/laskarit/komentorivi.txt)
+### Komentorivitoiminnot
 
-## Viikko2
+#### Käynnistys
 
-[laskarit](https://github.com/mikkosk/ot2019/blob/master/laskarit/viikko2)
+Sovelluksen suoritus
 
-[vaatimusmaarittely](https://github.com/mikkosk/ot2019/blob/master/dokumentaatio/vaatimusmaarittely.md)
+```
+mvn compile exec:java -Dexec.mainClass=com.mycompany.shakki.Main
+```
+
+#### Testaus
+
+Testien suoritus
+
+```
+mvn test
+```
+
+Testikattavuusraportin luonti
+
+```
+mvn jacoco:report
+```
 
 
 Tekijä:
