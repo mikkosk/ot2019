@@ -51,7 +51,8 @@ public class ShakkiUi extends Application {
         
         //menu
         
-        BorderPane placementMenu = new BorderPane();
+        Pane placementMenu = new Pane();
+        placementMenu.setPrefSize(500, 500);
         
         HBox players = new HBox();
         players.getChildren().add(player("Pelaaja1", "WHITE"));
@@ -61,9 +62,12 @@ public class ShakkiUi extends Application {
         
         Button startGame = new Button("Let's play!");
         
-        placementMenu.setTop(title);
-        placementMenu.setCenter(players);
-        placementMenu.setBottom(startGame);
+        placementMenu.getChildren().add(title);
+        title.relocate(100, 10);
+        placementMenu.getChildren().add(players);
+        players.relocate(100, 100);
+        placementMenu.getChildren().add(startGame);
+        startGame.relocate(100, 400);
         
         Scene sceneMenu = new Scene(placementMenu);
         
@@ -111,7 +115,10 @@ public class ShakkiUi extends Application {
     private VBox player(String player, String pieces) {
         VBox playerVBox  = new VBox();
         playerVBox.getChildren().add(new Label("Choose your name..."));
-        playerVBox.getChildren().add(new TextArea(player));
+        TextArea chooseName = new TextArea(player);
+        chooseName.setPrefRowCount(1);
+        chooseName.setPrefColumnCount(10);
+        playerVBox.getChildren().add(chooseName);
         playerVBox.getChildren().add(new Label(pieces + " PIECES"));
         return playerVBox;
     }

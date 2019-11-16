@@ -5,13 +5,10 @@
  */
 package com.mycompany.shakki.UI;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javax.imageio.ImageIO;
 
 /**
  *
@@ -24,6 +21,7 @@ public class PieceUI extends Pane {
         String color = white == true ? "white" : "black";
         resource += color + type + ".png";
         String url = getClass().getResource("../../../../images/" + resource).toExternalForm();
+        System.out.println(url);
         Image image = new Image(url);
         ImageView piece = new ImageView(image);
         
