@@ -26,6 +26,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -115,8 +116,7 @@ public class ShakkiUi extends Application {
     private VBox player(String player, String pieces) {
         VBox playerVBox  = new VBox();
         playerVBox.getChildren().add(new Label("Choose your name..."));
-        TextArea chooseName = new TextArea(player);
-        chooseName.setPrefRowCount(1);
+        TextField chooseName = new TextField(player);
         chooseName.setPrefColumnCount(10);
         playerVBox.getChildren().add(chooseName);
         playerVBox.getChildren().add(new Label(pieces + " PIECES"));
