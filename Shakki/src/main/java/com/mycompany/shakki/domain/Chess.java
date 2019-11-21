@@ -25,10 +25,11 @@ public class Chess {
         
         boolean moveMade = false;
         Piece piece = board.getTile(oldX, oldY).getPiece();
-        if(piece != null) {
+        if(piece != null && piece.validMove(board, oldX, oldY, newX, newY)) {
             board.getTile(newX, newY).setPiece(piece);
             board.getTile(oldX, oldY).setPiece(null);
             moveMade = true;
+            piece.setHasMoved(true);
         }
         return moveMade;
     }

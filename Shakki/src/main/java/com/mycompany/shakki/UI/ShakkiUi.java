@@ -124,7 +124,10 @@ public class ShakkiUi extends Application {
     }
     
     private void movePiece(int x, int y) {
-        if(pieceClicked) {
+        if(x > 7 || y > 7) {
+            pieceClicked = false;
+        }
+        else if(pieceClicked) {
             chess.movePiece(clickedX, clickedY, x, y);
             pieceClicked = false;
         } else {

@@ -14,10 +14,20 @@ import java.util.Objects;
 public class Piece {
     private String type;
     private boolean white;
+    private boolean hasMoved;
+
+    public boolean isHasMoved() {
+        return hasMoved;
+    }
+
+    public void setHasMoved(boolean hasMoved) {
+        this.hasMoved = hasMoved;
+    }
     
     public Piece(String pieceType, boolean isWhite) {
         type = pieceType;
         white = isWhite;
+        hasMoved = false;
     }
 
     @Override
@@ -63,6 +73,10 @@ public class Piece {
 
     public void setWhite(boolean white) {
         this.white = white;
+    }
+    
+    public boolean validMove(Board board, int oldX, int oldY, int newX, int newY) {
+        return false;
     }
     
 }

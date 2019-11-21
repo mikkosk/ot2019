@@ -25,6 +25,10 @@ public class Board {
         tiles[y][x] = tile;
     }
     
+    public boolean tileOnBoardIsEmpty(int x, int y) {
+        return tiles[y][x].empty();
+    }
+    
     private void initializeBoard() {
         for(int y = 0; y < 8; y++) {
             for(int x = 0; x < 8; x++) {
@@ -69,6 +73,6 @@ public class Board {
             type = "Pawn";
         }
         
-        tiles[y][x].setPiece(new Piece(type, white));
+        tiles[y][x].setPiece(new King(type, white));
     }
 }
