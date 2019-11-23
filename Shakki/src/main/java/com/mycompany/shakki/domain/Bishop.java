@@ -34,13 +34,14 @@ public class Bishop extends Piece {
             if(upY && rightX) {
                 if(!board.tileOnBoardIsEmpty(oldX+i, oldY-i)) return false;
             } else if(upY && !rightX) {
-                if(!board.tileOnBoardIsEmpty(oldX-1, oldY-i)) return false;
+                if(!board.tileOnBoardIsEmpty(oldX-i, oldY-i)) return false;
             } else if(!upY && rightX) {
                 if(!board.tileOnBoardIsEmpty(oldX+i, oldY+i)) return false;
             } else{
                 if(!board.tileOnBoardIsEmpty(oldX-i, oldY+i)) return false;
             }
         }
+        System.out.println("true tiles");
         return true;
     }
 }

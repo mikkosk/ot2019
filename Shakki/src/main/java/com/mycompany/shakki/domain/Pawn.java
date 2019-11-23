@@ -27,7 +27,7 @@ public class Pawn extends Piece {
         if(newY - oldY == negative * 1) {
             if(newX == oldX && board.tileOnBoardIsEmpty(newX, newY)) {
                 goodMove = true;
-            } else if (Math.abs(newX - oldX) == 1 && board.getTile(newX, newY).getPiece().isWhite() != this.isWhite()) {
+            } else if (Math.abs(newX - oldX) == 1 && !board.getTile(newX, newY).empty() && board.getTile(newX, newY).getPiece().isWhite() != this.isWhite()) {
                 goodMove = true;
             }
         } else if(newY - oldY == negative * 2) {

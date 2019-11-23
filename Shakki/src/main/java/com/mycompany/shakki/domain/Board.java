@@ -44,35 +44,35 @@ public class Board {
         }
 
         boolean white = false;
-        String type = "";
+        Piece piece = new Piece("", false);
         
         if(y > 5) {
             white = true;
         }
         
         if(x == 0 || x == 7) {
-            type = "Rook";
+            piece = new Rook("Rook", white);
         }
         if(x == 1 || x == 6) {
-            type = "Knight";
+            piece = new Knight("Knight", white);
         }
         
         if(x == 2 || x == 5) {
-            type = "Bishop";
+            piece = new Bishop("Bishop", white);
         }
         
         if(x == 3) {
-            type = "Queen";
+            piece = new Queen("Queen", white);;
         }
         
         if(x == 4) {
-            type = "King";
+            piece = new King("King", white);;
         }
         
         if(y == 1 || y == 6) {
-            type = "Pawn";
+            piece = new Pawn("Pawn", white);;
         }
         
-        tiles[y][x].setPiece(new King(type, white));
+        tiles[y][x].setPiece(piece);
     }
 }

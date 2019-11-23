@@ -102,6 +102,9 @@ public class ShakkiUi extends Application {
            x = ((x-(x%50))/50);
            y = ((y-(y%50))/50);
            movePiece(x,y);
+           if(chess.getCheckmate()) {
+               stage.setScene(sceneMenu);
+           }
            drawBoard();
         });
         
