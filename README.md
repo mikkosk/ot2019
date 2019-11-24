@@ -15,6 +15,8 @@ Muilla käyttöjärjestelmillä komentoriviltä käynnistyskin onnistuu.
 
 [Työaikakirjanpito](https://github.com/mikkosk/ot2019/tree/master/dokumentaatio/tyoaikakirjanpito.md)
 
+[Arkkitehtuuri](https://github.com/mikkosk/ot2019/tree/master/dokumentaatio/arkkitehtuuri.md)
+
 ### Komentorivitoiminnot
 
 #### Käynnistys

@@ -5,8 +5,10 @@
  */
 package com.mycompany.shakki;
 
+import com.mycompany.shakki.domain.Bishop;
 import com.mycompany.shakki.domain.Chess;
 import com.mycompany.shakki.domain.Piece;
+import com.mycompany.shakki.domain.Queen;
 import org.junit.After;
 import org.junit.AfterClass;
 import static org.junit.Assert.*;
@@ -47,31 +49,57 @@ public class ChessTest {
     
     @Test
     public void movingExistingPieceReturnsTrue() {
-        assertTrue(chess.movePiece(1, 1, 1, 2));
+        assertTrue(chess.turn(6, 6, 6, 5));
     }
     
     @Test
     public void movingNonexistingPieceReturnsFalse() {
-        assertFalse(chess.movePiece(2, 2, 0, 0));
+        assertFalse(chess.turn(2, 2, 0, 0));
     }
     
     @Test
     public void movingPieceSetsPieceToNewCoordinates() {
-        Piece piece = chess.getBoard().getTile(0,1).getPiece();
-        chess.movePiece(0, 1, 0, 2);
-        assertEquals(piece, chess.getBoard().getTile(0,2).getPiece());
+        Piece piece = chess.getBoard().getTile(0,6).getPiece();
+        chess.turn(0, 6, 0, 5);
+        assertEquals(piece, chess.getBoard().getTile(0,5).getPiece());
     }
     
     @Test
     public void movingPieceClearsOldCoordinates() {
-        chess.movePiece(0, 1, 0, 2);
-        assertEquals(null, chess.getBoard().getTile(0,1).getPiece());
+        chess.turn(0, 6, 0, 5);
+        assertEquals(null, chess.getBoard().getTile(0,6).getPiece());
     }
     
     @Test
     public void movingPieceToSameSpotWontClearCoordinates() {
-        Piece piece = chess.getBoard().getTile(0,0).getPiece();
-        chess.movePiece(0, 0, 0, 0);
-        assertEquals(piece, chess.getBoard().getTile(0,0).getPiece());
+        Piece piece = chess.getBoard().getTile(0,6).getPiece();
+        chess.turn(0, 6, 0, 6);
+        assertEquals(piece, chess.getBoard().getTile(0,6).getPiece());
+    }
+    
+    @Test
+    public void cantMoveWrongColorPiece() {
+        assertFalse(chess.turn(1, 1, 1, 2));
+    }
+    
+    @Test
+    public void movingPieceChangesTurn() {
+        chess.turn(6, 6, 6, 5);
+        assertFalse(chess.isWhitesTurn());
+    }
+    
+    @Test
+    public void cantMovePieceIfItLeadsToCheck() {
+        chess.getBoard().getTile(0, 3).setPiece(new Bishop("Bishop", false));
+        assertFalse(chess.turn(3, 6, 3, 5));
+    }
+    
+    @Test
+    public void chessmateTrueAfterTurn() {
+        chess.getBoard().getTile(3, 0).setPiece(new Queen("Queen", true));
+        chess.getBoard().getTile(5, 0).setPiece(new Queen("Queen", true));
+        chess.getBoard().getTile(4, 1).setPiece(new Queen("Queen", true));
+        chess.turn(0, 6, 0, 5);
+        assertTrue(chess.getCheckmate());
     }
 }
