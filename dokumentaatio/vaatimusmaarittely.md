@@ -24,17 +24,19 @@ kun peli on ohitse.
 
 ### Ennen pelin alkua
 
-- Pelaajat voivat syöttää nimensä ja valita puolensa
+- Pelaajat voivat syöttää nimensä ja valita puolensa "tehty osittain, pelaajan nimi ei vielä näy"
 
 ### Pelin aikana
 
-- Pelaaja pystyy näkemään pelin tämän hetkisen tilanteen
+- Pelaaja pystyy näkemään pelin tämän hetkisen tilanteen "tehty"
 
-- Pelaaja pystyy siirtämään nappuloita
+- Pelaaja pystyy siirtämään nappuloita "tehty"
 
-	- Ainoastaan omia nappuloita voidaan siirtää
+	- Ainoastaan omia nappuloita voidaan siirtää "tehty"
 
-	- Siirtojen tulee olla laillisia
+	- Siirtojen tulee olla laillisia "tehty"
+
+- Peli loppuu shakkimattiin "tehty"
 
 - Pelaaja lopettaa pelin luovuttumalla
 
