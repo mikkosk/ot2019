@@ -1,1 +1,1 @@
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/master/kuvat/pakkauskaavio.png">
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/master/kuvat/pakkauskaavio.PNG">
