@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.shakki.UI;
+package com.mycompany.shakki.gui;
 
 /**
  *
@@ -15,26 +15,19 @@ import com.mycompany.shakki.domain.Chess;
 import com.mycompany.shakki.domain.Piece;
 import com.mycompany.shakki.domain.Tile;
 import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class ShakkiUi extends Application {
+public class ShakkiUI extends Application {
     private Chess chess = new Chess();
     private Group tiles = new Group();
     private Group pieces = new Group();
@@ -90,6 +83,17 @@ public class ShakkiUi extends Application {
         
         Scene sceneGame = new Scene(placementGame);
         
+        
+        //Endscreen
+        
+        BorderPane placementEnd = new BorderPane();
+        placementEnd.setPrefSize(500, 500);
+        Label winner = new Label();
+        Button continueToMenu = new Button("Back to menu");
+        placementEnd.setCenter(winner);
+        placementEnd.setBottom(continueToMenu);
+        Scene sceneEnd = new Scene(placementEnd);
+        
         //buttons for changing scene
         
         startGame.setOnAction((event) -> {
@@ -97,15 +101,27 @@ public class ShakkiUi extends Application {
         });
         
         tilesAndPieces.onMouseClickedProperty().set(e -> {
-           int x = (int)e.getX();
-           int y = (int)e.getY();
-           x = ((x-(x%50))/50);
-           y = ((y-(y%50))/50);
-           movePiece(x,y);
-           if(chess.getCheckmate()) {
-               stage.setScene(sceneMenu);
-           }
-           drawBoard();
+            int x = (int) e.getX();
+            int y = (int) e.getY();
+            x = ((x - (x % 50)) / 50);
+            y = ((y - (y % 50)) / 50);
+            movePiece(x, y);
+            if (chess.getCheckmate()) {
+                if (chess.isWhitesTurn()) {
+                    winner.setText("Black wins");
+                } else {
+                    winner.setText("White wins");
+                }
+                stage.setScene(sceneEnd);
+            }
+            drawBoard();
+        });
+        
+        continueToMenu.setOnAction((event) -> {
+            chess = new Chess();
+            board = chess.getBoard();
+            drawBoard();
+            stage.setScene(sceneMenu);
         });
         
         //set initial scene
@@ -127,11 +143,10 @@ public class ShakkiUi extends Application {
     }
     
     private void movePiece(int x, int y) {
-        if(x > 7 || y > 7) {
+        if (x > 7 || y > 7) {
             pieceClicked = false;
-        }
-        else if(pieceClicked) {
-            chess.movePiece(clickedX, clickedY, x, y);
+        } else if (pieceClicked) {
+            chess.turn(clickedX, clickedY, x, y);
             pieceClicked = false;
         } else {
             pieceClicked = true;
@@ -143,16 +158,16 @@ public class ShakkiUi extends Application {
     private void drawBoard() {
         tiles.getChildren().clear();
         pieces.getChildren().clear();
-        for(int y=0; y<8; y++) {
-            for(int x=0; x<8; x++) {
+        for (int y = 0; y < 8; y++) {
+            for (int x = 0; x < 8; x++) {
                 Tile boardTile = board.getTile(x, y);
                 Piece piece = boardTile.getPiece();
                 TileUI tile = new TileUI(boardTile.isWhite(), x, y);
                 tiles.getChildren().add(tile);
-                if(piece != null) { 
+                if (piece != null) { 
                     PieceUI pieceUI;
                     try {
-                        pieceUI = new PieceUI(x,y, piece.getType(), piece.isWhite());
+                        pieceUI = new PieceUI(x, y, piece.getType(), piece.isWhite());
                     } catch (FileNotFoundException ex) {
                         pieceUI = null;
                     }

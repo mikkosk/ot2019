@@ -9,7 +9,7 @@ package com.mycompany.shakki.domain;
  *
  * @author Mikko
  */
-public class Knight extends Piece{
+public class Knight extends Piece {
     
     public Knight(String type, boolean white) {
         super(type, white);
@@ -17,11 +17,11 @@ public class Knight extends Piece{
     
     @Override
     public boolean validMove(Board board, int oldX, int oldY, int newX, int newY) {
-        if(((Math.abs(newY-oldY) == 2 && Math.abs(newX - oldX) == 1) ||
-                (Math.abs(newX-oldX) == 2 && Math.abs(newY - oldY) == 1))) {
-            if(board.tileOnBoardIsEmpty(newX, newY)) {
+        if (((Math.abs(newY - oldY) == 2 && Math.abs(newX - oldX) == 1) ||
+                (Math.abs(newX - oldX) == 2 && Math.abs(newY - oldY) == 1))) {
+            if (board.tileOnBoardIsEmpty(newX, newY)) {
                 return true;
-            } else if(board.getTile(newX, newY).getPiece().isWhite() != this.isWhite()) {
+            } else if (board.getTile(newX, newY).getPiece().isWhite() != this.isWhite()) {
                 return true;
             } 
         }

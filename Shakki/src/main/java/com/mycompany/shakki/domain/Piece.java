@@ -79,4 +79,71 @@ public class Piece {
         return false;
     }
     
+    public boolean checkTilesBeforeStraight(Board board, int oldX, int oldY, int newX, int newY) {
+        boolean yAxis = oldX == newX;
+        boolean grows = yAxis ? oldY < newY : oldX < newX;
+        int start = yAxis ? oldY : oldX;
+        int end = yAxis ? newY : newX;
+        int iHigh = Math.abs(end - start);
+        for (int i = 1; i < iHigh; i++) {
+            if (!checkPossibleDirectionsStraight(board, i, oldX, oldY, yAxis, grows)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    public boolean checkTilesBeforeDiagonal(Board board, int oldX, int oldY, int newX, int newY) {
+        boolean growsY = oldY < newY;
+        boolean rightX = oldX < newX;
+
+        for (int i = 1; i <= Math.abs(newX - oldX) - 1; i++) {
+            if (!checkPossibleDirectionsDiagonal(board, i, oldX, oldY, growsY, rightX)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private boolean checkPossibleDirectionsStraight(Board board, int i, int x, int y, boolean axisOne, boolean axisTwo) {
+        if (axisOne && axisTwo) {
+            if (!board.tileOnBoardIsEmpty(x, y + i)) {
+                return false;
+            }
+        } else if (axisOne && !axisTwo) {
+            if (!board.tileOnBoardIsEmpty(x, y - i)) {
+                return false;
+            }
+        } else if (!axisOne && axisTwo) {
+            if (!board.tileOnBoardIsEmpty(x + i, y)) {
+                return false;
+            }
+        } else {
+            if (!board.tileOnBoardIsEmpty(x - i, y)) {
+                return false;
+            }
+        }
+        return true;        
+    }
+    
+    private boolean checkPossibleDirectionsDiagonal(Board board, int i, int x, int y, boolean axisOne, boolean axisTwo) {
+        if (axisOne && axisTwo) {
+            if (!board.tileOnBoardIsEmpty(x + i, y + i)) {
+                return false;
+            }
+        } else if (axisOne && !axisTwo) {
+            if (!board.tileOnBoardIsEmpty(x - i, y + i)) {
+                return false;
+            }
+        } else if (!axisOne && axisTwo) {
+            if (!board.tileOnBoardIsEmpty(x + i, y - i)) {
+                return false;
+            }
+        } else {
+            if (!board.tileOnBoardIsEmpty(x - i, y - i)) {
+                return false;
+            }
+        }
+        return true;        
+    }
 }

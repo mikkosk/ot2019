@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.shakki.UI;
+package com.mycompany.shakki.gui;
 
 import java.io.FileNotFoundException;
 import javafx.scene.image.Image;
@@ -18,7 +18,7 @@ import javafx.scene.shape.Rectangle;
  */
 public class PieceUI extends Pane {
     
-    public PieceUI (int x, int y, String type, boolean white) throws FileNotFoundException {
+    public PieceUI(int x, int y, String type, boolean white) throws FileNotFoundException {
         String resource = "";
         String color = white == true ? "white" : "black";
         resource += color + type + ".png";
@@ -26,8 +26,8 @@ public class PieceUI extends Pane {
         Image image = new Image(url);
         ImageView piece = new ImageView(image);
 
-        piece.setTranslateX(x*50);
-        piece.setTranslateY(y*50);
+        piece.setTranslateX(x * 50);
+        piece.setTranslateY(y * 50);
         
         getChildren().add(piece);
     }

@@ -5,7 +5,7 @@
  */
 package com.mycompany.shakki;
 
-import com.mycompany.shakki.UI.ShakkiUi;
+import com.mycompany.shakki.gui.ShakkiUI;
 
 /**
  *
@@ -18,7 +18,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        ShakkiUi.main(args);
+        ShakkiUI.main(args);
     }
     
 }

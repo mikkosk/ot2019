@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.shakki.UI;
+package com.mycompany.shakki.gui;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -17,12 +17,8 @@ public class TileUI extends Rectangle {
         setWidth(50);
         setHeight(50);
         
-        relocate(x*50, y*50);
+        relocate(x * 50, y * 50);
         
         setFill(colorWhite ? Color.WHITE : Color.BLACK); 
-        
-        setOnMouseClicked(e -> {
-            System.out.println("ok");
-        });
     }
 }

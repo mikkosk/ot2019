@@ -30,49 +30,41 @@ public class Board {
     }
     
     private void initializeBoard() {
-        for(int y = 0; y < 8; y++) {
-            for(int x = 0; x < 8; x++) {
-                tiles[y][x] = new Tile(x, y, (y+x)%2 == 0);
-                pieceToTileStandard(x,y);
+        for (int y = 0; y < 8; y++) {
+            for (int x = 0; x < 8; x++) {
+                tiles[y][x] = new Tile(x, y, (y + x) % 2 == 0);
+                pieceToTile(x, y);
             }
         }
     }
     
-    private void pieceToTileStandard(int x, int y) {
-        if(y < 6 && y > 1) {
+    private void pieceToTile(int x, int y) {
+        if (y < 6 && y > 1) {
             return;
         }
-
         boolean white = false;
-        Piece piece = new Piece("", false);
-        
-        if(y > 5) {
+        Piece piece = new Piece("", false);    
+        if (y > 5) {
             white = true;
-        }
-        
-        if(x == 0 || x == 7) {
+        }    
+        if (x == 0 || x == 7) {
             piece = new Rook("Rook", white);
         }
-        if(x == 1 || x == 6) {
+        if (x == 1 || x == 6) {
             piece = new Knight("Knight", white);
-        }
-        
-        if(x == 2 || x == 5) {
+        }   
+        if (x == 2 || x == 5) {
             piece = new Bishop("Bishop", white);
-        }
-        
-        if(x == 3) {
+        }     
+        if (x == 3) {
             piece = new Queen("Queen", white);;
         }
-        
-        if(x == 4) {
+        if (x == 4) {
             piece = new King("King", white);;
         }
-        
-        if(y == 1 || y == 6) {
+        if (y == 1 || y == 6) {
             piece = new Pawn("Pawn", white);;
         }
-        
         tiles[y][x].setPiece(piece);
     }
 }
