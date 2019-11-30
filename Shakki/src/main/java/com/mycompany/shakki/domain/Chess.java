@@ -5,6 +5,10 @@
  */
 package com.mycompany.shakki.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 /**
  *
  * @author Mikko
@@ -14,12 +18,17 @@ public class Chess {
     private boolean whitesTurn;
     private boolean checkmate;
     private boolean stalemate;
+    private Player playerOne;
+    private Player playerTwo;
+    private int id;
     
     public Chess() {
         board = new Board();
         whitesTurn = true;
         checkmate = false;
         stalemate = false;
+        id = getRandomId();
+        setPlayers("Player One", "Player Two");
     }
     
     private void checkmate(Board copy, boolean whiteTurn) {
@@ -85,6 +94,7 @@ public class Chess {
         return false;
     }
     
+    //add stalemate
     public boolean turn(int oldX, int oldY, int newX, int newY) {  
         boolean moveMade = false;
         Piece piece = board.getTile(oldX, oldY).getPiece();
@@ -96,7 +106,7 @@ public class Chess {
             if (!checkCheck(board, whitesTurn)) {
                 moveMade = true;
                 piece.setHasMoved(true);
-                stalemate(board, whitesTurn);
+                checkPawnsToQueen();
                 checkmate(board, whitesTurn);
                 whitesTurn = !whitesTurn;
             } else {
@@ -110,6 +120,10 @@ public class Chess {
         return whitesTurn;
     }
 
+    public void setWhitesTurn(Boolean white) {
+        whitesTurn = white;
+    }
+    
     public boolean isStalemate() {
         return stalemate;
     }
@@ -148,5 +162,43 @@ public class Chess {
             return true;
         }
         return false;
+    }
+    
+    public void setPlayers(String nameOne, String nameTwo) {
+        playerOne = new Player(nameOne, 0, 0);
+        playerTwo = new Player(nameTwo, 0, 0);
+    }
+    
+    public List<Player> getPlayers() {
+        List players = new ArrayList<>();
+        players.add(playerOne);
+        players.add(playerTwo);
+        return players;
+    }
+    
+    private void checkPawnsToQueen() {
+        for (int i = 0; i < 7; i++) {
+            Piece smallY = board.getTile(i, 0).getPiece();
+            Piece bigY = board.getTile(i, 7).getPiece();
+            if (smallY != null && smallY.getType().equals("Pawn") && smallY.isWhite()) {
+                board.getTile(i, 0).setPiece(new Queen("Queen", true));
+            }
+            if (bigY != null && bigY.getType().equals("Pawn") && !bigY.isWhite()) {
+                board.getTile(i, 7).setPiece(new Queen("Queen", false));
+            }
+        }
+    }
+    
+    private int getRandomId() {
+        Random r = new Random();
+        return Math.abs(r.nextInt(100000));
+    }
+    
+    public int getId() {
+        return id;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
     }
 }

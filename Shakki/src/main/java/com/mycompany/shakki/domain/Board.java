@@ -67,4 +67,54 @@ public class Board {
         }
         tiles[y][x].setPiece(piece);
     }
+    
+    public void clearBoard() {
+        tiles = new Tile[8][8];
+        for (int y = 0; y < 8; y++) {
+            for (int x = 0; x < 8; x++) {
+                tiles[y][x] = new Tile(x, y, (y + x) % 2 == 0);
+            }
+        }
+    }
+    
+    public void fixPieceTypesAfterContinue() {
+        for (int y = 0; y < 8; y++) {
+            for (int x = 0; x < 8; x++) {
+                Piece piece = tiles[y][x].getPiece();
+                if (piece != null) {
+                    Piece setPiece = returnRightClassPiece(piece.getType());
+                    setPiece.setHasMoved(piece.isHasMoved());
+                    setPiece.setWhite(piece.isWhite());
+                    tiles[y][x].setPiece(setPiece);
+                }
+            }
+        }
+    }
+    
+    private Piece returnRightClassPiece(String type) {
+        if (type.equals("Pawn")) {
+            return new Pawn(type, true);
+        } else if (type.equals("Rook")) {
+            return new Rook(type, true);
+        } else if (type.equals("Knight")) {
+            return new Knight(type, true);
+        } else if (type.equals("Bishop")) {
+            return new Bishop(type, true);
+        } else if (type.equals("Queen")) {
+            return new Queen(type, true);
+        } else {
+            return new King(type, true);
+        }
+    }
+    
+    public boolean boardIsEmpty() {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (!getTile(i, j).empty()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }
