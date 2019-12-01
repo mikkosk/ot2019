@@ -9,4 +9,4 @@
 
 Pelin aloittaminen
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/master/kuvat/sekvenssikaavio.jpg">
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/master/kuvat/sekvenssikaavio.png">
