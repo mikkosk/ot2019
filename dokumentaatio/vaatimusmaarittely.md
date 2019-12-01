@@ -38,15 +38,15 @@ kun peli on ohitse.
 
 - Peli loppuu shakkimattiin "tehty"
 
-- Pelaaja lopettaa pelin luovuttumalla
+- Pelaaja lopettaa pelin luovuttumalla "tehty 1.12"
 
 ## Jatkokehitysideoita
 
 Jos aikaa jää toteutetaan joitan seuraavista ominaisuuksista:
 
-- Peli tallettaa kunkin pelaajan tuloshistorian
+- Peli tallettaa kunkin pelaajan tuloshistorian "tehty 1.12"
 
-- Peli voidaan keskeyttää luovuttamatta ja jatkaa sitä myöhemmin
+- Peli voidaan keskeyttää luovuttamatta ja jatkaa sitä myöhemmin "tehty 1.12"
 
 - Peli näyttää jo syödyt nappulat
 

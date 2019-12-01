@@ -42,6 +42,21 @@ mvn jacoco:report
 ```
 
 
+#### Jarin generointi
+
+```
+mvn package
+```
+
+
+#### Checkstyle
+
+```
+mvn jxr:jxr checkstyle:checkstyle
+```
+
+
+
 Tekijä:
 
 *Mikko Kivistö* 2019

@@ -25,5 +25,16 @@
 24.11. Koodin putsausta, testien luomista, Linux-toimivuuden tarkastus, pakkauskaavion luonti 5 tuntia
 
 
-##### Yhteensä: 25 tuntia
+28.11. Yksittäisiä muutoksia nappuloihin, tietokantojen toiminnan kertausta, 3 tuntia
+
+
+29.11. Tietokantojen dao ja käyttöönotto tulosten ja pelien säilytystä varten, 5 tuntia
+
+
+30.11. Tietokantojen käyttöönoton viimeistely, testien kirjoitus, 4 tuntia
+
+1.12. JARin kanssa taistelua, dokuentaation lisäys, 4 tuntia
+
+
+##### Yhteensä: 41 tuntia
 
