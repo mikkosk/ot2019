@@ -22,8 +22,7 @@ public class PieceUI extends Pane {
         String resource = "";
         String color = white == true ? "white" : "black";
         resource += color + type + ".png";
-        String url = getClass().getResource("../../../../images/" + resource).toExternalForm();
-        Image image = new Image(url);
+        Image image = new Image("/images/" + resource);
         ImageView piece = new ImageView(image);
 
         piece.setTranslateX(x * 50);
