@@ -108,6 +108,7 @@ public class Chess {
                 piece.setHasMoved(true);
                 checkPawnsToQueen();
                 checkmate(board, whitesTurn);
+                stalemate(board, whitesTurn);
                 whitesTurn = !whitesTurn;
             } else {
                 movePiece(startTile, endTile, piece, eaten);
@@ -138,6 +139,10 @@ public class Chess {
     
     public boolean getCheckmate() {
         return this.checkmate;
+    }
+    
+    public boolean getStalemate() {
+        return this.stalemate;
     }
     
     private Tile findKing(boolean white) {

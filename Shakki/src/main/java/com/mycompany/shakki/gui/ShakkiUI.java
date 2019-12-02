@@ -119,11 +119,13 @@ public class ShakkiUI extends Application {
         tilesAndPieces.getChildren().add(pieces);
         Label playerOneName = new Label("Player One");
         Label playerTwoName = new Label("Player Two");
+        Label playerTurn = new Label("Whites turn");
         Button forfeit = new Button("Forfeit");
         Button quit = new Button("Quit");
         VBox gameButtons = new VBox();
         gameButtons.getChildren().add(forfeit);
         gameButtons.getChildren().add(quit);
+        gameButtons.getChildren().add(playerTurn);
         
         //adding the tiles to the board
         drawBoard();   
@@ -187,18 +189,25 @@ public class ShakkiUI extends Application {
             x = ((x - (x % 50)) / 50);
             y = ((y - (y % 50)) / 50);
             movePiece(x, y);
-            if (chess.getCheckmate()) {
+            if (chess.isWhitesTurn()) {
+                playerTurn.setText("Whites turn");
+            } else {
+                playerTurn.setText("Blacks turn");
+            }
+            if (chess.getCheckmate() || chess.getStalemate()) {
                 try {
                     chessDao.removeGame(chess);
                 } catch (SQLException ex) {
                     Logger.getLogger(ShakkiUI.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                if (chess.isWhitesTurn()) {
+                if (chess.getStalemate()) {
+                    winner.setText("It's a draw");
+                } else if (chess.isWhitesTurn()) {
                     winner.setText("Black wins");
                 } else {
                     winner.setText("White wins");
                 }
-                stage.setScene(sceneEnd);
+                stage.setScene(sceneEnd); 
             }
             drawBoard();
         });
@@ -329,6 +338,9 @@ public class ShakkiUI extends Application {
     }
     
     private void addGameToLeaderboard() throws SQLException {
+        if(chess.getStalemate()) {
+            return;
+        }
         if(!chess.isWhitesTurn()) {
             leaderboardDao.updatePlayerWin(chess.getPlayers().get(0).getName());
             leaderboardDao.updatePlayerLose(chess.getPlayers().get(1).getName());
