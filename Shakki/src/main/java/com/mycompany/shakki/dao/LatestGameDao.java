@@ -10,6 +10,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 /**
  * dao in charge of the id of the latest game
  * @author Mikko
@@ -31,14 +33,14 @@ public class LatestGameDao {
      * @throws SQLException if problem with the database
      */
     public int getLatest() throws SQLException {
-        int id = 0;
+        List<Integer> id = new ArrayList<>();
         try (Connection connection = connectH2();
                 ResultSet results = connection.prepareStatement("SELECT * FROM LatestGame").executeQuery()) {
-            if (results.next()) {
-                id = results.getInt("latestGame");
+            while (results.next()) {
+                id.add(results.getInt("latestGame"));
             }
         }
-        return id;
+        return id.get(id.size() - 1);
     }
  
     /**
@@ -47,10 +49,12 @@ public class LatestGameDao {
      * @throws SQLException if problem with the database
      */
     public void addLatest(int id) throws SQLException {
+        System.out.println("lisätty");
         try (Connection connection = connectH2()) {
             PreparedStatement stmt = connection.prepareStatement("INSERT INTO LatestGame (latestGame) VALUES (?)");
             stmt.setInt(1, id);
             stmt.execute();
+            System.out.println("toimi");
         }
     }
     

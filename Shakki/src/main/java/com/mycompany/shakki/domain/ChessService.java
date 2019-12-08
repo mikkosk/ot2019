@@ -116,7 +116,6 @@ public class ChessService {
         if (chess.getStalemate()) {
             return "It's a draw";
         } else if (chess.isWhitesTurn()) {
-            
             return "Black wins";
         } else {
             return "White wins";
