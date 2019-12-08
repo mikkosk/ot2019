@@ -42,7 +42,7 @@ Uuden pelin saat käyntiin kirjoittamalla haluamiesi pelaajien nimet tekstikentt
 
 ja sitten painamalla Let's play! -nappulaa.
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/menu.PNG">
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/master/kuvat/menu.PNG">
 
 
 ### Vanhan pelin jatkaminen
@@ -69,7 +69,7 @@ mutta ohjelma ei toteuta siirtoa, kannattaa kokeilla tuplaklikata nappulaa, jott
 
 et ole mahdollisesti valinnut jo aikaisempaa nappulaa, jonka siirtoa ohjelma vielä odottaa.
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/peli.PNG">
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/master/kuvat/peli.PNG">
 
 
 ### Luovuttaminen
@@ -80,7 +80,7 @@ peli ilmoittaa vastapelurin voittaneen ja pääset palaamaan menuun painamalla B
 
 menu -nappulaa.
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/loppu.PNG">
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/master/kuvat/loppu.PNG">
 
 ### Pelin luonnollinen loppuminen
 
@@ -102,4 +102,4 @@ Pelaajien voittojen määrää pääsee tarkastelemaan painamalla Leaderboard-n�
 
 Takaisin menuun pääse Back to menu -näppäimellä.
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/leaderboard.PNG">
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/master/kuvat/leaderboard.PNG">

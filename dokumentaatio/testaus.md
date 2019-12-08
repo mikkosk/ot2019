@@ -37,7 +37,7 @@ Kattavuus ei sisällä käyttöliittymää, mutta sen rivikattavuus on muilta os
 
 ja haarautumiskattavuus 92%
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/jacoco.PNG">
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/master/kuvat/jacoco.PNG">
 
 Testtaamatta jäivät pääosin yleiset metodit, kuten getterit ja setterit sekä vertailu.
 

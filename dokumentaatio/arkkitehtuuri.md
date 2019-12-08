@@ -77,7 +77,7 @@ kommunikoi DAO;jen avulla.
 
 Käyttöliittymään ChessService luodaan init() -käskyllä.
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/rakenne2.PNG">
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/master/kuvat/rakenne2.PNG">
 
 
 
@@ -115,7 +115,7 @@ uudella pöydällä nappulat standardi sijainneillaan. Tämän jälkeen
 
 pelaajat lisätään tietokantaan. Lopuksi pöytä piirretään ja scene vaihtuu.
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/rakenne3.PNG">
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/master/kuvat/rakenne3.PNG">
 
 
 ##### Siirron tekeminen
@@ -128,7 +128,7 @@ Ennen vuoron vaihtoa tarkistetaan myös mahdollinen pelin loppuminen.
 
 Lopuksi pöytä päivitetään CHessServicessä ja käyttöliittymässä.
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/rakenne4.PNG">
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/master/kuvat/rakenne4.PNG">
 
 
 ##### Lopetus
@@ -141,7 +141,7 @@ ChessService merkkaa, että viimeisintä peliä ei enää ole ja päivittää
 
 DAO:n kautta Leaderboardin.
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/rakenne5.PNG">
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/master/kuvat/rakenne5.PNG">
 
 
 ##### Muut
