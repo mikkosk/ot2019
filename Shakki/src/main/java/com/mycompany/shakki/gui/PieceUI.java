@@ -13,11 +13,20 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 /**
- *
+ * the graphical implementation of a piece on a chess board
  * @author Mikko
  */
 public class PieceUI extends Pane {
     
+    /**
+     * creates a new chess piece to the gui
+     * 
+     * @param x location of the piece (x-coordinate)
+     * @param y location of the piece (y-coordinate)
+     * @param type type of the piece
+     * @param white whether or not the piece is white
+     * @throws FileNotFoundException if there is no images of the pieces in the folder
+     */
     public PieceUI(int x, int y, String type, boolean white) throws FileNotFoundException {
         String resource = "";
         String color = white == true ? "white" : "black";

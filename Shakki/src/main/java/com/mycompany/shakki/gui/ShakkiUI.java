@@ -6,7 +6,7 @@
 package com.mycompany.shakki.gui;
 
 /**
- *
+ * the gui of the chess game and its menus
  * @author Mikko
  */
 
@@ -15,9 +15,11 @@ import com.mycompany.shakki.domain.Chess;
 import com.mycompany.shakki.domain.Piece;
 import com.mycompany.shakki.domain.Player;
 import com.mycompany.shakki.domain.Tile;
-import dao.ChessDao;
-import dao.LeaderboardDao;
-import dao.PiecesDao;
+import com.mycompany.shakki.domain.ChessService;
+import com.mycompany.shakki.dao.ChessDao;
+import com.mycompany.shakki.dao.LatestGameDao;
+import com.mycompany.shakki.dao.LeaderboardDao;
+import com.mycompany.shakki.dao.PiecesDao;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -45,19 +47,34 @@ public class ShakkiUI extends Application {
     private LeaderboardDao leaderboardDao;
     private ChessDao chessDao;
     private PiecesDao piecesDao;
+    private LatestGameDao latestGameDao;
+    private ChessService chessService;
     
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * initializes the gui by creating the DAOs and the chessService
+     * @throws Exception if there is problem with the daos
+     */
     @Override
     public void init() throws Exception{
-        leaderboardDao = new LeaderboardDao();
+        String url = "jdbc:h2:./chessDatabase";
+        leaderboardDao = new LeaderboardDao(url);
         leaderboardDao.getPlayers();
-        chessDao = new ChessDao();
-        piecesDao = new PiecesDao();
+        chessDao = new ChessDao(url);
+        piecesDao = new PiecesDao(url);
+        latestGameDao = new LatestGameDao(url);
+        chessService = new ChessService(chessDao, piecesDao, leaderboardDao, latestGameDao);
     }
     
+    /**
+     * starts and handles the gui as a whole
+     * 
+     * @param stage the stage showing the different scenes of the game
+     * @throws Exception if something is wrong with the chessService
+     */
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle("Shakki");
@@ -127,9 +144,6 @@ public class ShakkiUI extends Application {
         gameButtons.getChildren().add(quit);
         gameButtons.getChildren().add(playerTurn);
         
-        //adding the tiles to the board
-        drawBoard();   
-        
         placementGame.setCenter(tilesAndPieces);
         placementGame.setTop(playerOneName);
         placementGame.setBottom(playerTwoName);
@@ -164,22 +178,14 @@ public class ShakkiUI extends Application {
         //buttons for changing scene
         
         startGame.setOnAction((event) -> {
-            chess = new Chess();
-            board = chess.getBoard();
-            chess.setPlayers(chooseNameOne.getText(), chooseNameTwo.getText());
+            try {
+                chessService.newGame(chooseNameOne.getText(), chooseNameTwo.getText());
+            } catch (SQLException ex) {
+                Logger.getLogger(ShakkiUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
             playerOneName.setText(chooseNameTwo.getText());
             playerTwoName.setText(chooseNameOne.getText());
             drawBoard();
-            try {
-                leaderboardDao.addPlayer(new Player(chooseNameOne.getText(), 0, 0));
-            } catch (SQLException ex) {
-                Logger.getLogger(ShakkiUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                leaderboardDao.addPlayer(new Player(chooseNameTwo.getText(), 0, 0));
-            } catch (SQLException ex) {
-                Logger.getLogger(ShakkiUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
             stage.setScene(sceneGame);
         });
         
@@ -189,23 +195,16 @@ public class ShakkiUI extends Application {
             x = ((x - (x % 50)) / 50);
             y = ((y - (y % 50)) / 50);
             movePiece(x, y);
-            if (chess.isWhitesTurn()) {
+            if (chessService.whitesTurn()) {
                 playerTurn.setText("Whites turn");
             } else {
                 playerTurn.setText("Blacks turn");
             }
-            if (chess.getCheckmate() || chess.getStalemate()) {
+            if (chessService.getCheckmate() || chessService.getStalemate()) {
                 try {
-                    chessDao.removeGame(chess);
+                    winner.setText(chessService.endGameAndReturnResult());
                 } catch (SQLException ex) {
                     Logger.getLogger(ShakkiUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                if (chess.getStalemate()) {
-                    winner.setText("It's a draw");
-                } else if (chess.isWhitesTurn()) {
-                    winner.setText("Black wins");
-                } else {
-                    winner.setText("White wins");
                 }
                 stage.setScene(sceneEnd); 
             }
@@ -214,28 +213,19 @@ public class ShakkiUI extends Application {
         
         forfeit.setOnAction((event) ->  {
             try {
-                chessDao.removeGame(chess);
+                winner.setText(chessService.endGameAndReturnResult());
             } catch (SQLException ex) {
                 Logger.getLogger(ShakkiUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            if (chess.isWhitesTurn()) {
-                winner.setText("Black wins");
-            } else {
-                winner.setText("White wins");
             }
             stage.setScene(sceneEnd);
         });
         
         continueToMenu.setOnAction((event) -> {
             try {
-                addGameToLeaderboard();
                 getLeaderboard(leaderboardVbox);
             } catch (SQLException ex) {
                 Logger.getLogger(ShakkiUI.class.getName()).log(Level.SEVERE, null, ex);
             }
-            chess = new Chess();
-            board = chess.getBoard();
-            drawBoard();
             stage.setScene(sceneMenu);
         });
         
@@ -249,26 +239,18 @@ public class ShakkiUI extends Application {
         
         continueGame.setOnAction((event) -> {
             try {
-                chess = chessDao.getChess();
+                if(chessService.continueGame()) {
+                    drawBoard();
+                    stage.setScene(sceneGame);
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(ShakkiUI.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            board = chess.getBoard();
-            board.fixPieceTypesAfterContinue();
-            if(!board.boardIsEmpty()) {
-                drawBoard();
-                stage.setScene(sceneGame);
             }
         });
         
         quit.setOnAction((event) -> {
             try {
-                chessDao.addGame(chess);
-                for(int i = 0; i < 8; i++) {
-                    for(int j = 0; j < 8; j++) {
-                        piecesDao.addPiece(board.getTile(i, j), chess.getId());
-                    }
-                }
+                chessService.quitAndSave();
             } catch (SQLException ex) {
                 Logger.getLogger(ShakkiUI.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -287,7 +269,7 @@ public class ShakkiUI extends Application {
         if (x > 7 || y > 7) {
             pieceClicked = false;
         } else if (pieceClicked) {
-            chess.turn(clickedX, clickedY, x, y);
+            chessService.turn(clickedX, clickedY, x, y);
             pieceClicked = false;
         } else {
             pieceClicked = true;
@@ -301,7 +283,7 @@ public class ShakkiUI extends Application {
         pieces.getChildren().clear();
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 8; x++) {
-                Tile boardTile = board.getTile(x, y);
+                Tile boardTile = chessService.getBoard().getTile(x, y);
                 Piece piece = boardTile.getPiece();
                 TileUI tile = new TileUI(boardTile.isWhite(), x, y);
                 tiles.getChildren().add(tile);
@@ -336,18 +318,4 @@ public class ShakkiUI extends Application {
             }
         }
     }
-    
-    private void addGameToLeaderboard() throws SQLException {
-        if(chess.getStalemate()) {
-            return;
-        }
-        if(!chess.isWhitesTurn()) {
-            leaderboardDao.updatePlayerWin(chess.getPlayers().get(0).getName());
-            leaderboardDao.updatePlayerLose(chess.getPlayers().get(1).getName());
-        } else {
-            leaderboardDao.updatePlayerWin(chess.getPlayers().get(1).getName());
-            leaderboardDao.updatePlayerLose(chess.getPlayers().get(0).getName());
-        }
-    }
-    
 }

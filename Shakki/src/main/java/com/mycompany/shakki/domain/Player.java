@@ -6,7 +6,7 @@
 package com.mycompany.shakki.domain;
 
 /**
- *
+ * Represents a player in a game of chess
  * @author Mikko
  */
 public class Player implements Comparable<Player> {
@@ -14,6 +14,12 @@ public class Player implements Comparable<Player> {
     private int wins;
     private int losses;
 
+    /**
+     * sets up a new player with name, wins and losses
+     * @param name name of the player
+     * @param wins wins of the player
+     * @param losses losses of the player
+     */
     public Player(String name, int wins, int losses) {
         this.name = name;
         this.wins = wins;
@@ -44,6 +50,11 @@ public class Player implements Comparable<Player> {
         this.losses = losses;
     }
 
+    /**
+     * compares the wins of two players
+     * @param player player being compared to this
+     * @return negative integer if this has more wins, positive if player has more wins, 0 if equal amount of wins
+     */
     @Override
     public int compareTo(Player player) {
         return player.getWins() - this.getWins();

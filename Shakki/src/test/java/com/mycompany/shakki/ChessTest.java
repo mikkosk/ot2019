@@ -7,6 +7,7 @@ package com.mycompany.shakki;
 
 import com.mycompany.shakki.domain.Bishop;
 import com.mycompany.shakki.domain.Chess;
+import com.mycompany.shakki.domain.Pawn;
 import com.mycompany.shakki.domain.Piece;
 import com.mycompany.shakki.domain.Queen;
 import org.junit.After;
@@ -101,5 +102,24 @@ public class ChessTest {
         chess.getBoard().getTile(4, 1).setPiece(new Queen("Queen", true));
         chess.turn(0, 6, 0, 5);
         assertTrue(chess.getCheckmate());
+    }
+    
+    @Test 
+    public void whitePawnTurnsToQueen() {
+        chess.getBoard().getTile(0, 1).setPiece(new Pawn("Pawn", true));
+        chess.getBoard().getTile(0, 0).setPiece(null);
+        chess.turn(0, 1, 0, 0);
+        Queen q = new Queen("", true);
+        assertEquals(q.getClass(), chess.getBoard().getTile(0, 0).getPiece().getClass());
+    }
+    
+    @Test 
+    public void blackPawnTurnsToQueen() {
+        chess.getBoard().getTile(6, 6).setPiece(new Pawn("Pawn", false));
+        chess.getBoard().getTile(6, 7).setPiece(null);
+        chess.turn(0, 6, 0, 5);
+        chess.turn(6, 6, 6, 7);
+        Queen q = new Queen("", true);
+        assertEquals(q.getClass(), chess.getBoard().getTile(6, 7).getPiece().getClass());
     }
 }

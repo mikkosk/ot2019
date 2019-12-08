@@ -33,8 +33,24 @@
 
 30.11. Tietokantojen käyttöönoton viimeistely, testien kirjoitus, 4 tuntia
 
+
 1.12. JARin kanssa taistelua, dokuentaation lisäys, 4 tuntia
 
 
-##### Yhteensä: 41 tuntia
+2.12. Koodin siistintää, DAO parannus, yksittäisiä lisäyksiä sovelluslogiikkaan, 4 tuntia
+
+
+4.12. Dokumentoinnin luonnostelua, 0,5 tuntia
+
+
+5.12. Dokumentoinnin luonnostelua, 0,5 tuntia
+
+
+7.12. DAOn tiedostojen erittelyä, JavaDocin teko, testauksen laajennus, yleiset päivitykset (CheckStyle yms.), 6 tuntia
+
+
+8.12. Dokumentoinnin tekeminen loppuun, 3 tuntia
+
+
+##### Yhteensä: 55 tuntia
 

@@ -6,8 +6,6 @@
 package com.mycompany.shakki.dao;
 
 import com.mycompany.shakki.domain.Player;
-import dao.ChessDao;
-import dao.LeaderboardDao;
 import java.sql.SQLException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -36,15 +34,23 @@ public class LeaderboardDaoTest {
     
     @Before
     public void setUp() throws SQLException {
-        chessDao = new ChessDao();
+        chessDao = new ChessDao("jdbc:h2:./testChessDatabase");
         chessDao.dropTables();
-        leaderboardDao = new LeaderboardDao();
+        leaderboardDao = new LeaderboardDao("jdbc:h2:./testChessDatabase");
     }
     
     @After
     public void tearDown() {
     }
 
+    @Test 
+    public void daoWontAddNewPlayerOnExistingPlayer() throws SQLException {
+        leaderboardDao.addPlayer(new Player("P1", 0, 0));
+        leaderboardDao.updatePlayerWin("P1");
+        leaderboardDao.addPlayer(new Player("P1", 0, 0));
+        assertEquals(1, leaderboardDao.getPlayers().get(0).getWins());
+    }
+    
     @Test
     public void daoReturnsListOfPlayers() throws SQLException {
         leaderboardDao.addPlayer(new Player("P1", 0, 0));

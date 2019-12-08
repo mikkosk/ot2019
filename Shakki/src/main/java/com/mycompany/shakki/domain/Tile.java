@@ -6,7 +6,7 @@
 package com.mycompany.shakki.domain;
 
 /**
- *
+ * Represents a tile on a chess board
  * @author Mikko
  */
 public class Tile {
@@ -15,6 +15,12 @@ public class Tile {
     private int y;
     private boolean white;
     
+    /**
+     * creates a tile with color and location
+     * @param x x-coordinate of the tile
+     * @param y y-coordinate of the tile
+     * @param white whether or not the tile is white
+     */
     public Tile(int x, int y, boolean white) {
         this.piece = null;
         this.x = x;
@@ -46,6 +52,10 @@ public class Tile {
         this.white = white;
     }
     
+    /**
+     * tells if the tile has a piece or nott
+     * @return true, if the tile is empty, else false
+     */
     public boolean empty() {
         return piece == null;
     }

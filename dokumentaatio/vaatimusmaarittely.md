@@ -6,47 +6,69 @@ Sovelluksen avulla kaksi pelaajaa voivat pelata pelin shakkia.
 
 ## Käyttäjät
 
-Lähtökohtaisesti sovelluksella ei ole useampia käyttäjärooleja vaan kaikki
+Sovelluksella ei ole useampia käyttäjärooleja vaan kaikki
 pelaajat ovat **normaali käyttäjiä**
 
 ## Käyttöliittymäluonnos
 
-Sovellus koostuu kahdesta näkymästä. 
+Sovellus koostuu neljästä näkymästä. 
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/master/kuvat/vaatimusmaarittely.png">
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/maarittely.PNG>
 
-Ensimmäisessä näkymässä pelaajat voivat valita nimensä ja puolet. Toisessa 
-näkymässä toimii itse shakkipeli. Tähän siirrytään, kun pelaajat ovat
-valinneet puolet ja siitä siirrytään takaisin ensimmäiseen näkymään,
-kun peli on ohitse.
+1. Menu
 
-## Perusversion tarjoama toiminnallisuus
+Pelaaja voi aloittaa uuden peli, jatkaa vanhaa tai tarkastella tuloksia.
+
+
+2. Peli
+
+Pelaaja voi pelata shakkia
+
+
+3. Pelin loppu
+
+Sovellus kertoo pelin voittajan.
+
+
+4. Tulokset
+
+Pelaaja näkyy pelaajien voitot ja tappiot.
+
+
+
+## Sovelluksen tarjoama toiminnallisuus
 
 ### Ennen pelin alkua
 
-- Pelaajat voivat syöttää nimensä ja valita puolensa "tehty osittain, pelaajan nimi ei vielä näy"
+- Pelaajat voivat syöttää nimensä ja valita puolensa
+
+- Pelaaja voi tarkastella vanhoja tuloksia
+
+- Pelaaja voi aloittaa uuden tai jatkaa vanhaa peliä
 
 ### Pelin aikana
 
-- Pelaaja pystyy näkemään pelin tämän hetkisen tilanteen "tehty"
+- Pelaaja pystyy näkemään pelin tämän hetkisen tilanteen
 
-- Pelaaja pystyy siirtämään nappuloita "tehty"
+- Pelaaja pystyy siirtämään nappuloita
 
-	- Ainoastaan omia nappuloita voidaan siirtää "tehty"
+	- Ainoastaan omia nappuloita voidaan siirtää
 
-	- Siirtojen tulee olla laillisia "tehty"
+	- Siirtojen tulee olla laillisia 
 
-- Peli loppuu shakkimattiin "tehty"
+	- ** TORNITUSTA EI LISÄTTY PELIN LOPULLISEEN VERSIOON) **
 
-- Pelaaja lopettaa pelin luovuttumalla "tehty 1.12"
+- Peli loppuu shakkimattiin tai pattiin
+
+- Pelaaja lopettaa pelin luovuttumalla
+
+- Peli tallettaa kunkin pelaajan tuloshistorian
+
+- Peli voidaan keskeyttää luovuttamatta ja jatkaa sitä myöhemmin
 
 ## Jatkokehitysideoita
 
-Jos aikaa jää toteutetaan joitan seuraavista ominaisuuksista:
-
-- Peli tallettaa kunkin pelaajan tuloshistorian "tehty 1.12"
-
-- Peli voidaan keskeyttää luovuttamatta ja jatkaa sitä myöhemmin "tehty 1.12"
+Seuraavat kohdat jäivät toteuttamatta:
 
 - Peli näyttää jo syödyt nappulat
 

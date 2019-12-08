@@ -6,8 +6,6 @@
 package com.mycompany.shakki.dao;
 
 import com.mycompany.shakki.domain.Chess;
-import dao.ChessDao;
-import dao.PiecesDao;
 import java.sql.SQLException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -37,8 +35,8 @@ public class ChessDaoTest {
     
     @Before
     public void setUp() throws SQLException {
-        chessDao = new ChessDao();
-        piecesDao = new PiecesDao();
+        chessDao = new ChessDao("jdbc:h2:./testChessDatabase");
+        piecesDao = new PiecesDao("jdbc:h2:./testChessDatabase");
         chessDao.dropTables();
         chess = new Chess();
         chessDao.addGame(chess);
@@ -50,13 +48,22 @@ public class ChessDaoTest {
 
     @Test
     public void rightGameIsSaved() throws SQLException {
-        Chess same = chessDao.getChess();
+        Chess same = chessDao.getChess(chess.getId());
         assertEquals(chess.getId(), same.getId());
     }
     
     @Test
-    public void emptyGameIsReturnedIfThereAreNoGamesSaved() throws SQLException {
+    public void emptyGameIsReturnedIfThereAreNoMatchingId() throws SQLException {
         chessDao.removeGame(chess);
-        assertTrue(chessDao.getChess().getBoard().boardIsEmpty());
+        assertTrue(chessDao.getChess(chess.getId()).getBoard().boardIsEmpty());
+    }
+    
+    @Test
+    public void ifThereIsExistingGameUpdateIt() throws SQLException {
+        chess.turn(6, 6, 6, 5);
+        chess.isWhitesTurn();
+        chessDao.addGame(chess);
+        chess = chessDao.getChess(chess.getId());
+        assertFalse(chess.isWhitesTurn());
     }
 }

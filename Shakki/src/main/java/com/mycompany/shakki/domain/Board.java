@@ -6,12 +6,15 @@
 package com.mycompany.shakki.domain;
 
 /**
- *
+ * Represents the board of a chess game
  * @author Mikko
  */
 public class Board {
     private Tile[][] tiles;
     
+    /**
+     * Creates a new board which has 8x8 tiles and pieces in standard opening positions
+     */
     public Board() {
         tiles = new Tile[8][8];
         initializeBoard();
@@ -25,6 +28,14 @@ public class Board {
         tiles[y][x] = tile;
     }
     
+    /**
+    *´checks if the tile on board has a piece on it
+    * 
+    * @param x x-coordinate
+    * @param y y-coordinate
+    * 
+    * @return true, if there is piece on the tile, other wise, false
+    */
     public boolean tileOnBoardIsEmpty(int x, int y) {
         return tiles[y][x].empty();
     }
@@ -46,28 +57,19 @@ public class Board {
         Piece piece = new Piece("", false);    
         if (y > 5) {
             white = true;
-        }    
-        if (x == 0 || x == 7) {
-            piece = new Rook("Rook", white);
         }
-        if (x == 1 || x == 6) {
-            piece = new Knight("Knight", white);
-        }   
-        if (x == 2 || x == 5) {
-            piece = new Bishop("Bishop", white);
-        }     
-        if (x == 3) {
-            piece = new Queen("Queen", white);;
-        }
-        if (x == 4) {
-            piece = new King("King", white);;
-        }
+        
         if (y == 1 || y == 6) {
             piece = new Pawn("Pawn", white);;
+        } else {
+            piece = getRightPieceClass(x, white);
         }
         tiles[y][x].setPiece(piece);
     }
     
+    /**
+     * clears the board from any pieces
+     */
     public void clearBoard() {
         tiles = new Tile[8][8];
         for (int y = 0; y < 8; y++) {
@@ -77,6 +79,9 @@ public class Board {
         }
     }
     
+    /**
+     * sets the classes to match the types of the pieces
+     */
     public void fixPieceTypesAfterContinue() {
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 8; x++) {
@@ -107,6 +112,11 @@ public class Board {
         }
     }
     
+    /**
+     * tells if there is no pieces on board
+     * 
+     * @return true if there is no pieces on board, else returns false
+     */
     public boolean boardIsEmpty() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -116,5 +126,25 @@ public class Board {
             }
         }
         return true;
+    }
+    
+    private Piece getRightPieceClass(int x, boolean white) {
+        Piece piece = new Piece("", true);
+        if (x == 0 || x == 7) {
+            piece = new Rook("Rook", white);
+        }
+        if (x == 1 || x == 6) {
+            piece = new Knight("Knight", white);
+        }   
+        if (x == 2 || x == 5) {
+            piece = new Bishop("Bishop", white);
+        }     
+        if (x == 3) {
+            piece = new Queen("Queen", white);;
+        }
+        if (x == 4) {
+            piece = new King("King", white);;
+        }
+        return piece;
     }
 }

@@ -59,6 +59,7 @@
                 <configuration>
                     <excludes>
                         <exclude>com/mycompany/shakki/gui/*</exclude>
+                        <exclude>dao/</exclude>
                     </excludes>
                 </configuration>   
                 <executions>

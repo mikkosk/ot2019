@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- *
+ * Represents a single game of chess with players, board and pieces
  * @author Mikko
  */
 public class Chess {
@@ -22,12 +22,15 @@ public class Chess {
     private Player playerTwo;
     private int id;
     
+    /**
+     * creates a new game of chess with standard starting positions and white starting the game
+     */
     public Chess() {
         board = new Board();
         whitesTurn = true;
         checkmate = false;
         stalemate = false;
-        id = getRandomId();
+        id = -1;
         setPlayers("Player One", "Player Two");
     }
     
@@ -43,6 +46,13 @@ public class Chess {
         }
     }
     
+    /**
+     * tells if there is a mate (check or stale) on board
+     * 
+     * @param copy the current board
+     * @param whiteTurn white pieces have the turn
+     * @return true, if there is a mate return true else return false
+     */
     private boolean mate(Board copy, boolean whiteTurn) {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -57,6 +67,13 @@ public class Chess {
         return true;
     }
         
+    /**
+     * checks if the king (of the player on turn) is checked
+     * 
+     * @param copy the current board
+     * @param whiteTurn if white pieces have the turn
+     * @return true, if the king is checked else return false
+     */
     private boolean checkCheck(Board copy, boolean whiteTurn) {
         Tile tile = findKing(whiteTurn);
         int x = tile.getX();
@@ -75,12 +92,23 @@ public class Chess {
         return false;
     }
     
-    private boolean checkSolvingMate(Board copy, Piece piece, int i, int j, boolean whiteTurn) {
+    /**
+     * checks if there is a way to solve the check and so avoiding the mate
+     * 
+     * @param copy the current board
+     * @param piece the current piece
+     * @param oldX the x-coordinate of the piece
+     * @param oldY the y-coordinate of the piece
+     * @param whiteTurn whether or not it is white piece's turn
+     * 
+     * @return true, if the piece can solve the check, else false
+     */
+    private boolean checkSolvingMate(Board copy, Piece piece, int oldX, int oldY, boolean whiteTurn) {
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
-                if (piece.validMove(copy, i, j, x, y)) {
+                if (piece.validMove(copy, oldX, oldY, x, y)) {
                     Piece eaten = copy.getTile(x, y).getPiece();
-                    Tile startTile = copy.getTile(i, j);
+                    Tile startTile = copy.getTile(oldX, oldY);
                     Tile endTile = copy.getTile(x, y);
                     movePiece(startTile, endTile, null, piece);
                     if (!checkCheck(copy, !whiteTurn)) {
@@ -94,7 +122,16 @@ public class Chess {
         return false;
     }
     
-    //add stalemate
+    /**
+     * moves a piece if the move is legal and then checks for mate and changes turn
+     * 
+     * @param oldX starting x-coordinate of the piece
+     * @param oldY starting y-coordinate of the piece
+     * @param newX desired ending x-coordinate of the piece
+     * @param newY desired ending y-coordinate of the piece
+     * 
+     * @return true, if the move is legal and hence made, else false
+     */
     public boolean turn(int oldX, int oldY, int newX, int newY) {  
         boolean moveMade = false;
         Piece piece = board.getTile(oldX, oldY).getPiece();
@@ -107,8 +144,7 @@ public class Chess {
                 moveMade = true;
                 piece.setHasMoved(true);
                 checkPawnsToQueen();
-                checkmate(board, whitesTurn);
-                stalemate(board, whitesTurn);
+                testForMates();
                 whitesTurn = !whitesTurn;
             } else {
                 movePiece(startTile, endTile, piece, eaten);
@@ -117,6 +153,10 @@ public class Chess {
         return moveMade;
     }
 
+    /**
+     * returns if it is white's turn
+     * @return true, if white pieces have the turn. false, if black pieces have the turn
+     */
     public boolean isWhitesTurn() {
         return whitesTurn;
     }
@@ -145,6 +185,11 @@ public class Chess {
         return this.stalemate;
     }
     
+    private void testForMates() {
+        checkmate(board, whitesTurn);
+        stalemate(board, whitesTurn);
+    }
+    
     private Tile findKing(boolean white) {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -162,6 +207,16 @@ public class Chess {
         startTile.setPiece(pieceStartTile);
     }
     
+    /**
+     * tells if the two chosen coordinates are exactly the same
+     * 
+     * @param oldX starting x-coordinate of the piece
+     * @param oldY starting y-coordinate of the piece
+     * @param newX desired ending x-coordinate of the piece
+     * @param newY desired ending y-coordinate of the piece
+     * 
+     * @return true, if the coordinates are same, else false
+     */
     private boolean sameCoordinates(int oldX, int oldY, int newX, int newY) {
         if (oldX == newX && oldY == newY) {
             return true;
@@ -174,6 +229,11 @@ public class Chess {
         playerTwo = new Player(nameTwo, 0, 0);
     }
     
+    /**
+     * returns the current players of the game as a list
+     * 
+     * @return List of players currently playing
+     */
     public List<Player> getPlayers() {
         List players = new ArrayList<>();
         players.add(playerOne);
@@ -192,11 +252,6 @@ public class Chess {
                 board.getTile(i, 7).setPiece(new Queen("Queen", false));
             }
         }
-    }
-    
-    private int getRandomId() {
-        Random r = new Random();
-        return Math.abs(r.nextInt(100000));
     }
     
     public int getId() {
