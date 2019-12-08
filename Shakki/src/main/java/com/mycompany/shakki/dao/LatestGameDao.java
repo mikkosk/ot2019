@@ -40,6 +40,9 @@ public class LatestGameDao {
                 id.add(results.getInt("latestGame"));
             }
         }
+        if (id.isEmpty()) {
+            return 0;
+        }
         return id.get(id.size() - 1);
     }
  
@@ -49,12 +52,10 @@ public class LatestGameDao {
      * @throws SQLException if problem with the database
      */
     public void addLatest(int id) throws SQLException {
-        System.out.println("lisätty");
         try (Connection connection = connectH2()) {
             PreparedStatement stmt = connection.prepareStatement("INSERT INTO LatestGame (latestGame) VALUES (?)");
             stmt.setInt(1, id);
             stmt.execute();
-            System.out.println("toimi");
         }
     }
     
