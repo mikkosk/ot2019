@@ -13,7 +13,7 @@ pelaajat ovat **normaali käyttäjiä**
 
 Sovellus koostuu neljästä näkymästä. 
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/maarittely.PNG>
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/maarittely.PNG">
 
 1. Menu
 

@@ -6,7 +6,7 @@ Ohjelma koostuu kolmesta taosta, joiden pakkausrakenne näyttää seuraavalta.
 
 UI on myös yhteydessä LeaderboardDao:on suoraan, joka ei toki ole optimaalista.
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/rakenne1.PNG>
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/rakenne1.PNG">
 
 UI hallitsee graafista käyttöliittymää (JavaFX), domain sovelluslogiikkaa ja dao
 
@@ -48,8 +48,6 @@ tai tehdään pelissä siirto (DrawBoard()).
 
 Pelin logiiikka toimii pääosin viidestä luokasta (Chess, Player, Board, Tile ja Piece):
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/rakenne2.PNG>
-
 Piece luokka toimii pohjana kaikille eri nappulatyypeillä, eikä sitä siis käytetä
 
 itsessään pelissä vaan luokkia (Pawn, Knight, Bishop, Rook, Queen, King).
@@ -79,7 +77,7 @@ kommunikoi DAO;jen avulla.
 
 Käyttöliittymään ChessService luodaan init() -käskyllä.
 
-[Pakkauskaavio]
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/rakenne2.PNG">
 
 
 
@@ -117,7 +115,7 @@ uudella pöydällä nappulat standardi sijainneillaan. Tämän jälkeen
 
 pelaajat lisätään tietokantaan. Lopuksi pöytä piirretään ja scene vaihtuu.
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/rakenne3.PNG>
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/rakenne3.PNG">
 
 
 ##### Siirron tekeminen
@@ -130,7 +128,7 @@ Ennen vuoron vaihtoa tarkistetaan myös mahdollinen pelin loppuminen.
 
 Lopuksi pöytä päivitetään CHessServicessä ja käyttöliittymässä.
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/rakenne4.PNG>
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/rakenne4.PNG">
 
 
 ##### Lopetus
@@ -143,7 +141,7 @@ ChessService merkkaa, että viimeisintä peliä ei enää ole ja päivittää
 
 DAO:n kautta Leaderboardin.
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/rakenne5.PNG>
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/rakenne5.PNG">
 
 
 ##### Muut
