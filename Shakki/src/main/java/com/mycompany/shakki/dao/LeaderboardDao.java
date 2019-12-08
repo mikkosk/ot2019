@@ -97,7 +97,7 @@ public class LeaderboardDao {
     private Connection connectH2() throws SQLException {
         Connection conn = DriverManager.getConnection(url, "sa", "");
         try {
-            conn.prepareStatement("new)").execute();
+            conn.prepareStatement("CREATE TABLE Players (name VARCHAR(255) PRIMARY KEY, wins INTEGER, losses INTEGER)").execute();
         } catch (SQLException t) {
         }
  
