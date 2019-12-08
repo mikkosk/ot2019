@@ -6,7 +6,7 @@ Ohjelma koostuu kolmesta taosta, joiden pakkausrakenne näyttää seuraavalta.
 
 UI on myös yhteydessä LeaderboardDao:on suoraan, joka ei toki ole optimaalista.
 
-<img src="https://raw.githubusercontent.com/mikkosk/ot2019/kuvat/rakenne1.PNG">
+<img src="https://raw.githubusercontent.com/mikkosk/ot2019/master/kuvat/rakenne1.PNG">
 
 UI hallitsee graafista käyttöliittymää (JavaFX), domain sovelluslogiikkaa ja dao
 
